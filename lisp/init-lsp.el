@@ -3,8 +3,7 @@
 ;;; Code:
 
 (when (maybe-require-package 'lsp-mode)
-  (add-hook 'python-mode-hook #'lsp-deferred)
-
+  (when (maybe-require-package 'lsp-ui))
   (when (maybe-require-package 'lsp-ivy)))
 
 (provide 'init-lsp)
