@@ -17,7 +17,7 @@
 
 (require-package 'pip-requirements)
 
-(setq lsp-clients-python-command (expand-file-name "$HOME/.pyenv/shims/pyls"))
+(setq lsp-clients-python-command (expand-file-name "~/.pyenv/shims/pyls"))
 (add-hook 'python-mode-hook #'lsp-deferred)
 
 (when (maybe-require-package 'toml-mode)
