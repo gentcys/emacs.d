@@ -15,6 +15,8 @@
 
 (setq python-shell-interpreter "python3")
 
+(add-hook 'ruby-mode-hook 'subword-mode)
+
 (require-package 'pip-requirements)
 
 (setq lsp-clients-python-command (expand-file-name "~/.pyenv/shims/pyls"))
