@@ -15,7 +15,7 @@
 
 (setq python-shell-interpreter "python3")
 
-(add-hook 'ruby-mode-hook 'subword-mode)
+(add-hook 'python-mode-hook 'subword-mode)
 
 (require-package 'pip-requirements)
 
