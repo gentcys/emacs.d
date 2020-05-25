@@ -3,6 +3,8 @@
 ;;; Code:
 
 (when (maybe-require-package 'lsp-mode)
+  (setq lsp-enable-snippet nil)
+
   (when (maybe-require-package 'lsp-ui))
   (when (maybe-require-package 'lsp-ivy)))
 
