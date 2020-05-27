@@ -89,6 +89,8 @@
 (require 'init-markdown)
 (require 'init-org)
 (require 'init-nxml)
+(require 'init-ruby)
+(require 'init-rails)
 (require 'init-python)
 (require 'init-sql)
 (maybe-require-package 'nginx-mode)
