@@ -18,9 +18,7 @@
 (add-hook 'python-mode-hook 'subword-mode)
 
 (require-package 'pip-requirements)
-
-(setq lsp-clients-python-command (expand-file-name "~/.pyenv/shims/pyls"))
-(add-hook 'python-mode-hook #'lsp-deferred)
+(add-hook 'python-mode-hook 'eglot-ensure)
 
 (when (maybe-require-package 'toml-mode)
   (add-to-list 'auto-mode-alist '("poetry\\.lock\\'" . toml-mode)))

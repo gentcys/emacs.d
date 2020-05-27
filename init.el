@@ -83,7 +83,7 @@
 
 (require 'init-projectile)
 
-(require 'init-lsp)
+(require 'init-eglot)
 (require 'init-compile)
 (require 'init-crontab)
 (require 'init-markdown)
