@@ -92,6 +92,7 @@
 (require 'init-ruby)
 (require 'init-rails)
 (require 'init-python)
+(require 'init-php)
 (require 'init-sql)
 (maybe-require-package 'nginx-mode)
 
