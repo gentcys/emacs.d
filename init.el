@@ -90,6 +90,7 @@
 (require 'init-org)
 (require 'init-nxml)
 (require 'init-ruby)
+(require 'init-golang)
 (require 'init-rails)
 (require 'init-python)
 (require 'init-php)
