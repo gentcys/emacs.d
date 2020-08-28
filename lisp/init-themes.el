@@ -29,12 +29,14 @@
 (defun light ()
   "Activate a light color theme."
   (interactive)
+  (mapc #'disable-theme custom-enabled-themes)
   (setq custom-enabled-themes '(solarized-light))
   (reapply-themes))
 
 (defun dark ()
   "Activate a dark color theme."
   (interactive)
+  (mapc #'disable-theme custom-enabled-themes)
   (setq custom-enabled-themes '(zenburn))
   (reapply-themes))
 
