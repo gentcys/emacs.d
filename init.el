@@ -95,6 +95,7 @@
 (require 'init-rails)
 (require 'init-python)
 (require 'init-php)
+(require 'init-javascript)
 (require 'init-yaml)
 (require 'init-sql)
 (maybe-require-package 'nginx-mode)
