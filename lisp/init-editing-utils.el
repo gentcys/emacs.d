@@ -38,7 +38,7 @@
 (add-hook 'after-init-hook 'global-auto-revert-mode)
 (setq global-auto-revert-non-file-buffers t
       auto-revert-verbose nil)
-(after-load 'autorevert
+(with-eval-after-load 'autorevert
   (diminish 'auto-revert-mode))
 
 (add-hook 'after-init-hook 'transient-mark-mode)
@@ -84,7 +84,7 @@
 
 
 
-(after-load 'subword
+(with-eval-after-load 'subword
   (diminish 'subword-mode))
 
 
@@ -115,7 +115,7 @@
 (when (maybe-require-package 'symbol-overlay)
   (dolist (hook '(prog-mode-hook html-mode-hook yaml-mode-hook conf-mode-hook))
     (add-hook hook 'symbol-overlay-mode))
-  (after-load 'symbol-overlay
+  (with-eval-after-load 'symbol-overlay
     (diminish 'symbol-overlay-mode)
     (define-key symbol-overlay-mode-map (kbd "M-i") 'symbol-overlay-put)
     (define-key symbol-overlay-mode-map (kbd "M-I") 'symbol-overlay-remove-all)
@@ -133,11 +133,11 @@
 (require-package 'browse-kill-ring)
 (setq browse-kill-ring-separator "\f")
 (global-set-key (kbd "M-Y") 'browse-kill-ring)
-(after-load 'browse-kill-ring
+(with-eval-after-load 'browse-kill-ring
   (define-key browse-kill-ring-mode-map (kbd "C-g") 'browse-kill-ring-quit)
   (define-key browse-kill-ring-mode-map (kbd "M-n") 'browse-kill-ring-forward)
   (define-key browse-kill-ring-mode-map (kbd "M-p") 'browse-kill-ring-previous))
-(after-load 'page-break-lines
+(with-eval-after-load 'page-break-lines
   (push 'browse-kill-ring-mode page-break-lines-modes))
 
 
@@ -153,24 +153,12 @@
 ;;----------------------------------------------------------------------------
 (add-hook 'after-init-hook 'show-paren-mode)
 
-;;----------------------------------------------------------------------------
-;; Expand region
-;;----------------------------------------------------------------------------
-(require-package 'expand-region)
-(global-set-key (kbd "C-=") 'er/expand-region)
-
 
 ;;----------------------------------------------------------------------------
 ;; Don't disable case-change functions
 ;;----------------------------------------------------------------------------
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
-
-
-;;----------------------------------------------------------------------------
-;; Rectangle selections, and overwrite text when the selection is active
-;;----------------------------------------------------------------------------
-(cua-selection-mode t)                  ; for rectangles, CUA is nice
 
 
 ;;----------------------------------------------------------------------------
@@ -216,7 +204,7 @@
 ;;----------------------------------------------------------------------------
 (when (maybe-require-package 'page-break-lines)
   (add-hook 'after-init-hook 'global-page-break-lines-mode)
-  (after-load 'page-break-lines
+  (with-eval-after-load 'page-break-lines
     (diminish 'page-break-lines-mode)))
 
 ;;----------------------------------------------------------------------------
@@ -253,33 +241,8 @@
 ;;----------------------------------------------------------------------------
 (require-package 'whole-line-or-region)
 (add-hook 'after-init-hook 'whole-line-or-region-global-mode)
-(after-load 'whole-line-or-region
+(with-eval-after-load 'whole-line-or-region
   (diminish 'whole-line-or-region-local-mode))
-
-
-;; Some local minor modes clash with CUA rectangle selection
-
-(defvar-local sanityinc/suspended-modes-during-cua-rect nil
-  "Modes that should be re-activated when cua-rect selection is done.")
-
-(eval-after-load 'cua-rect
-  (advice-add 'cua--deactivate-rectangle :after
-              (lambda (&rest _)
-                (dolist (m sanityinc/suspended-modes-during-cua-rect)
-                  (funcall m 1)
-                  (setq sanityinc/suspended-modes-during-cua-rect nil)))))
-
-(defun sanityinc/suspend-mode-during-cua-rect-selection (mode-name)
-  "Add an advice to suspend `MODE-NAME' while selecting a CUA rectangle."
-  (eval-after-load 'cua-rect
-    (advice-add 'cua--activate-rectangle :after
-                (lambda (&rest _)
-                  (when (bound-and-true-p mode-name)
-                    (push mode-name sanityinc/suspended-modes-during-cua-rect)
-                    (funcall mode-name 0))))))
-
-(sanityinc/suspend-mode-during-cua-rect-selection 'whole-line-or-region-local-mode)
-
 
 
 
@@ -338,7 +301,7 @@ With arg N, insert N newlines."
 (require-package 'which-key)
 (add-hook 'after-init-hook 'which-key-mode)
 (setq-default which-key-idle-delay 1.5)
-(after-load 'which-key
+(with-eval-after-load 'which-key
   (diminish 'which-key-mode))
 
 
