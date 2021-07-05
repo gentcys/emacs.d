@@ -94,6 +94,7 @@
 (require 'init-rails)
 (require 'init-python)
 (require 'init-php)
+(require 'init-web)
 (require 'init-javascript)
 (require 'init-yaml)
 (require 'init-sql)
