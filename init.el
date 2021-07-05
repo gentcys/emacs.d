@@ -100,6 +100,8 @@
 (require 'init-sql)
 (maybe-require-package 'nginx-mode)
 
+(require 'init-skeleton)
+
 (require 'init-paredit)
 (require 'init-lisp)
 (require 'init-slime)
