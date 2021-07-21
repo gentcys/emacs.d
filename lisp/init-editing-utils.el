@@ -141,6 +141,10 @@
 (with-eval-after-load 'page-break-lines
   (push 'browse-kill-ring-mode page-break-lines-modes))
 
+
+(when (maybe-require-package 'expand-region)
+  (global-set-key (kbd "C-=") 'er/expand-region))
+
 
 ;;----------------------------------------------------------------------------
 ;; Don't disable narrowing commands
